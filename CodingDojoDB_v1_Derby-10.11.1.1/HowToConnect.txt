@@ -1,0 +1,12 @@
+Connection parameters : 
+
+    database name : "bookstore"
+    login : "root"
+    password: "admin"
+
+Schema : "ROOT"
+
+To start this database just launch the following  ".bat" or ".sh" file :
+
+    on Windows : bin/startNetworkServer.bat
+    on Linux : bin/startNetworkServer.sh.
