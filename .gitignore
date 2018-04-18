@@ -42,3 +42,10 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+CodingDojoDB_v1_Derby-10.11.1.1/bin/bookstore/seg0/c4c1.dat
+CodingDojoDB_v1_Derby-10.11.1.1/bin/bookstore/seg0/c4e1.dat
+CodingDojoDB_v1_Derby-10.11.1.1/bin/bookstore/seg0/c501.dat
+CodingDojoDB_v1_Derby-10.11.1.1/bin/bookstore/seg0/c661.dat
+CodingDojoDB_v1_Derby-10.11.1.1/bin/bookstore/seg0/c671.dat
+CodingDojoDB_v1_Derby-10.11.1.1/bin/bookstore/seg0/c681.dat
