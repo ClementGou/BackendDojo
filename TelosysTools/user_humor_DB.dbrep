@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Telosys Database Repository --><root>
 <tableList databaseId="0" databaseName="user_humor_DB" databaseProductName="Apache Derby" generation="2018-04-16 09:53:53">
+<table catalog="" databaseType="TABLE" javaBean="Member" name="MEMBER" schema="ROOT">
+<column dbComment="" dbDefaultValue="" dbName="ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="FIRSTNAME" dbNotNull="true" dbPosition="2" dbSize="25" dbTypeName="VARCHAR" inputType="text" javaName="firstname" javaType="java.lang.String" jdbcTypeCode="12" label="Firstname" maxLength="25" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="LASTNAME" dbNotNull="true" dbPosition="3" dbSize="25" dbTypeName="VARCHAR" inputType="text" javaName="lastname" javaType="java.lang.String" jdbcTypeCode="12" label="Lastname" maxLength="25" notEmpty="true" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="PASSWORD" dbNotNull="true" dbPosition="4" dbSize="25" dbTypeName="VARCHAR" inputType="text" javaName="password" javaType="java.lang.String" jdbcTypeCode="12" label="Password" maxLength="25" notEmpty="true" notNull="true" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="SQL180423122407530" id="LINK_FK_SQL180423122407530_I" inverseSideOf="LINK_FK_SQL180423122407530_O" javaName="listOfMemberHumor" javaType="java.util.List" joinTableName="" mappedBy="member" optional="" owningSide="false" sourceTableName="MEMBER" targetEntity="MemberHumor" targetTableName="MEMBER_HUMOR" used="true"/>
+</table>
+<table catalog="" databaseType="TABLE" javaBean="MemberHumor" name="MEMBER_HUMOR" schema="ROOT">
+<column dbComment="" dbDefaultValue="" dbName="ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="MEMBER_ID" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="memberId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Member id" notNull="true" selected="true"/>
+<column dateType="D" dbComment="" dbDefaultValue="" dbName="DAY" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="DATE" inputType="date" javaName="day" javaType="java.util.Date" jdbcTypeCode="91" label="Day" notNull="true" selected="true"/>
+<column dbComment="" dbDefaultValue="" dbName="MEMBER_HUMOR_LEVEL" dbNotNull="true" dbPosition="4" dbSize="25" dbTypeName="VARCHAR" inputType="text" javaName="memberHumorLevel" javaType="java.lang.String" jdbcTypeCode="12" label="Member humor level" maxLength="25" notEmpty="true" notNull="true" selected="true"/>
+<fk name="SQL180423122407530">
+<fkcol colname="MEMBER_ID" colref="ID" deferrable="7" deleterule="3" sequence="1" tablename="MEMBER_HUMOR" tableref="MEMBER" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="SQL180423122407530" id="LINK_FK_SQL180423122407530_O" inverseSideOf="" javaName="member" javaType="Member" joinTableName="" mappedBy="" optional="" owningSide="true" sourceTableName="MEMBER_HUMOR" targetEntity="Member" targetTableName="MEMBER" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="MEMBER_ID" nullable="true" referencedColumnName="ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
 <table catalog="" databaseType="TABLE" javaBean="User" name="USER" schema="ROOT">
 <column dbComment="" dbDefaultValue="" dbName="ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
 <column dbComment="" dbDefaultValue="" dbName="FIRSTNAME" dbNotNull="true" dbPosition="2" dbSize="25" dbTypeName="VARCHAR" inputType="text" javaName="firstName" javaType="java.lang.String" jdbcTypeCode="12" label="Firstname" notNull="false" selected="true"/>

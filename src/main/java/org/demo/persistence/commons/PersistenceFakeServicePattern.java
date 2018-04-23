@@ -12,11 +12,9 @@ package org.demo.persistence.commons;
  * @author Telosys
  *
  */
-public class PersistenceServicePattern {
+public class PersistenceFakeServicePattern {
 
-	// Set the persistence service class pattern below ...
-	public final static String  PATTERN = PersistenceFakeServicePattern.PATTERN ;
+	public final static String  PATTERN = "%s.impl.fake.%sFake" ;
+
 	
-	// public final static String  PATTERN = PersistenceJdbcServicePattern.PATTERN ;
-	// public final static String  PATTERN = PersistenceJPAServicePattern.PATTERN ;
 }
