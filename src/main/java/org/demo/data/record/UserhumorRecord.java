@@ -6,7 +6,7 @@
 package org.demo.data.record;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +28,7 @@ public class UserhumorRecord implements Serializable {
 	@NotNull
 	private Integer userId; // Integer
 	@NotNull
-	private LocalDate day; // Date
+	private Date day; // Date
 	@NotNull
 	@Size(min = 1, max = 25)
 	private String userHumorLevel; // String
@@ -93,7 +93,7 @@ public class UserhumorRecord implements Serializable {
 	 * 
 	 * @param day
 	 */
-	public void setDay(LocalDate day) {
+	public void setDay(Date day) {
 		this.day = day;
 	}
 
@@ -103,7 +103,7 @@ public class UserhumorRecord implements Serializable {
 	 * 
 	 * @return the field value
 	 */
-	public LocalDate getDay() {
+	public Date getDay() {
 		return this.day;
 	}
 

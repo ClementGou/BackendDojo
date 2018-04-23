@@ -15,8 +15,8 @@ package org.demo.persistence.commons;
 public class PersistenceServicePattern {
 
 	// Set the persistence service class pattern below ...
-	public final static String  PATTERN = PersistenceFakeServicePattern.PATTERN ;
-	
-	// public final static String  PATTERN = PersistenceJdbcServicePattern.PATTERN ;
-	// public final static String  PATTERN = PersistenceJPAServicePattern.PATTERN ;
+	// public final static String PATTERN = PersistenceFakeServicePattern.PATTERN ;
+
+	public final static String PATTERN = PersistenceJdbcServicePattern.PATTERN;
+	// public final static String PATTERN = PersistenceJPAServicePattern.PATTERN ;
 }

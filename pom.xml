@@ -70,6 +70,15 @@
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.4</version>
+    <scope>provided</scope>
+</dependency>
+		
 
 		<!-- Dependencies for Unit Testing -->
 		<dependency>
@@ -108,9 +117,16 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
-		<dependency>
+	    <dependency>
 		    <groupId>org.apache.derby</groupId>
 		    <artifactId>derbyclient</artifactId>
+		    <version>10.11.1.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+	    <dependency>
+		    <groupId>org.apache.derby</groupId>
+		    <artifactId>derby</artifactId>
 		    <version>10.11.1.1</version>
 		</dependency>
 
