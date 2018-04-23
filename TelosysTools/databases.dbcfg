@@ -5,4 +5,9 @@
 <property name="password" value="admin"/>
 <metadata catalog="" schema="ROOT" table-name-exclude="" table-name-include="" table-name-pattern="%" table-types="TABLE"/>
 </db>
+<db dialect="org.hibernate.dialect.DerbyDialect" driver="org.apache.derby.jdbc.ClientDriver" id="1" isolationLevel="" name="DERBY" poolSize="1" typeName="DERBY" url="jdbc:derby://localhost:1527/&lt;DB_NAME&gt;">
+<property name="user" value="TO_BE_DEFINED"/>
+<property name="password" value="TO_BE_DEFINED"/>
+<metadata catalog="" schema="TO_BE_DEFINED" table-name-exclude="" table-name-include="" table-name-pattern="%" table-types="TABLE"/>
+</db>
 </databases>
