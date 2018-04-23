@@ -2,7 +2,9 @@
 #set ( $uncapitalizedEntityName = ${fn.uncapitalize($entity.name)})
 ## 2 variables must be defined :
 ## $REST_URL_ROOT ( eg "http://localhost:3000" or "http://localhost:8080/project-name" )
+#set ($REST_URL_ROOT = "http://localhost:8080/BackendDojo")
 ## $REST_API_ROOT ( eg "/api/v1" )
+#set ($REST_API_ROOT = "/api/v1")
 #using("REST_URL_ROOT", "REST_API_ROOT" )
 #set ( $URL_ROOT = "${REST_URL_ROOT}${REST_API_ROOT}" )
 

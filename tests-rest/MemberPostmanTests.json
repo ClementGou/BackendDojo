@@ -34,7 +34,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:3000/api/v1/member",
+				"url": "http://localhost:8080/BackendDojo/api/v1/member",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -81,7 +81,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:3000/api/v1/member/100",
+				"url": "http://localhost:8080/BackendDojo/api/v1/member/100",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -122,7 +122,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:3000/api/v1/member",
+				"url": "http://localhost:8080/BackendDojo/api/v1/member",
 				"method": "POST",
 				"header": [
 					{
@@ -162,7 +162,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:3000/api/v1/member/100",
+				"url": "http://localhost:8080/BackendDojo/api/v1/member/100",
 				"method": "PUT",
 				"header": [
 					{
@@ -205,7 +205,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:3000/api/v1/member",
+				"url": "http://localhost:8080/BackendDojo/api/v1/member",
 				"method": "PUT",
 				"header": [
 					{
@@ -245,7 +245,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:3000/api/v1/member/100",
+				"url": "http://localhost:8080/BackendDojo/api/v1/member/100",
 				"method": "DELETE",
 				"header": [],
 				"body": {
