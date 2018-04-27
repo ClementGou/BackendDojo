@@ -12,13 +12,12 @@ import java.util.List;
 
 import javax.inject.Named;
 
-
-import org.demo.data.record.MemberRecord ;
+import org.demo.data.record.MemberRecord;
 import org.demo.persistence.MemberPersistence;
 import org.demo.persistence.impl.jdbc.commons.GenericJdbcDAO;
 
 /**
- * Member persistence implementation 
+ * Member persistence implementation
  * 
  * @author Telosys
  *
@@ -26,28 +25,21 @@ import org.demo.persistence.impl.jdbc.commons.GenericJdbcDAO;
 @Named("MemberPersistence")
 public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implements MemberPersistence {
 
-	private final static String SQL_SELECT_ALL = 
-		"select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER"; 
+	private final static String SQL_SELECT_ALL = "select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER";
 
-	private final static String SQL_SELECT = 
-		"select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER where ID = ?";
+	private final static String SQL_SELECT = "select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER where ID = ?";
 
-	private final static String SQL_INSERT = 
-		"insert into MEMBER ( ID, FIRSTNAME, LASTNAME, PASSWORD ) values ( ?, ?, ?, ? )";
+	private final static String SQL_INSERT = "insert into MEMBER ( ID, FIRSTNAME, LASTNAME, PASSWORD ) values ( ?, ?, ?, ? )";
 
-	private final static String SQL_UPDATE = 
-		"update MEMBER set FIRSTNAME = ?, LASTNAME = ?, PASSWORD = ? where ID = ?";
+	private final static String SQL_UPDATE = "update MEMBER set FIRSTNAME = ?, LASTNAME = ?, PASSWORD = ? where ID = ?";
 
-	private final static String SQL_DELETE = 
-		"delete from MEMBER where ID = ?";
+	private final static String SQL_DELETE = "delete from MEMBER where ID = ?";
 
-	private final static String SQL_COUNT_ALL = 
-		"select count(*) from MEMBER";
+	private final static String SQL_COUNT_ALL = "select count(*) from MEMBER";
 
-	private final static String SQL_COUNT = 
-		"select count(*) from MEMBER where ID = ?";
+	private final static String SQL_COUNT = "select count(*) from MEMBER where ID = ?";
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
 	 * DAO constructor
 	 */
@@ -55,199 +47,227 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 		super();
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setAutoIncrementedKey(MemberRecord record, long value) {
 		throw new IllegalStateException("Unexpected call to method 'setAutoIncrementedKey'");
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForPrimaryKey(PreparedStatement ps, int i, MemberRecord member) throws SQLException {
-		//--- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
-		setValue(ps, i++, member.getId() ) ; // "ID" : java.lang.Integer
+		// --- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
+		setValue(ps, i++, member.getId()); // "ID" : java.lang.Integer
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForInsert(PreparedStatement ps, int i, MemberRecord member) throws SQLException {
-		//--- Set PRIMARY KEY and DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
-		setValue(ps, i++, member.getId() ) ; // "ID" : java.lang.Integer
-		setValue(ps, i++, member.getFirstname() ) ; // "FIRSTNAME" : java.lang.String
-		setValue(ps, i++, member.getLastname() ) ; // "LASTNAME" : java.lang.String
-		setValue(ps, i++, member.getPassword() ) ; // "PASSWORD" : java.lang.String
+		// --- Set PRIMARY KEY and DATA from bean to PreparedStatement ( SQL "SET x=?,
+		// y=?, ..." )
+		setValue(ps, i++, member.getId()); // "ID" : java.lang.Integer
+		setValue(ps, i++, member.getFirstname()); // "FIRSTNAME" : java.lang.String
+		setValue(ps, i++, member.getLastname()); // "LASTNAME" : java.lang.String
+		setValue(ps, i++, member.getPassword()); // "PASSWORD" : java.lang.String
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForUpdate(PreparedStatement ps, int i, MemberRecord member) throws SQLException {
-		//--- Set DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
-		setValue(ps, i++, member.getFirstname() ) ; // "FIRSTNAME" : java.lang.String
-		setValue(ps, i++, member.getLastname() ) ; // "LASTNAME" : java.lang.String
-		setValue(ps, i++, member.getPassword() ) ; // "PASSWORD" : java.lang.String
-		//--- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
-		setValue(ps, i++, member.getId() ) ; // "ID" : java.lang.Integer
+		// --- Set DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
+		setValue(ps, i++, member.getFirstname()); // "FIRSTNAME" : java.lang.String
+		setValue(ps, i++, member.getLastname()); // "LASTNAME" : java.lang.String
+		setValue(ps, i++, member.getPassword()); // "PASSWORD" : java.lang.String
+		// --- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
+		setValue(ps, i++, member.getId()); // "ID" : java.lang.Integer
 	}
 
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
-	 * Creates a new instance of the bean and populates it with the given primary value(s)
+	 * Creates a new instance of the bean and populates it with the given primary
+	 * value(s)
+	 * 
 	 * @param id;
 	 * @return the new instance
 	 */
-	private MemberRecord newInstanceWithPrimaryKey( Integer id ) {
+	private MemberRecord newInstanceWithPrimaryKey(Integer id) {
 		MemberRecord member = new MemberRecord();
-		member.setId( id );
-		return member ;
+		member.setId(id);
+		return member;
 	}
 
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected MemberRecord newInstance() {
-		return new MemberRecord() ;
+		return new MemberRecord();
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected MemberRecord populateBean(ResultSet rs, MemberRecord member) throws SQLException {
 
-		//--- Set data from ResultSet to Bean attributes
+		// --- Set data from ResultSet to Bean attributes
 		member.setId(rs.getInt("ID")); // java.lang.Integer
-		if ( rs.wasNull() ) { member.setId(null); }; // not primitive number => keep null value if any
+		if (rs.wasNull()) {
+			member.setId(null);
+		}
+		; // not primitive number => keep null value if any
 		member.setFirstname(rs.getString("FIRSTNAME")); // java.lang.String
 		member.setLastname(rs.getString("LASTNAME")); // java.lang.String
 		member.setPassword(rs.getString("PASSWORD")); // java.lang.String
-		return member ;
+		return member;
 	}
 
-	//----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
-	public MemberRecord findById( Integer id ) {
-		MemberRecord member = newInstanceWithPrimaryKey( id ) ;
-		if ( super.doSelect(member) ) {
-			return member ;
-		}
-		else {
-			return null ; // Not found
+	public MemberRecord findById(Integer id) {
+		MemberRecord member = newInstanceWithPrimaryKey(id);
+		if (super.doSelect(member)) {
+			return member;
+		} else {
+			return null; // Not found
 		}
 	}
-	//----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public List<MemberRecord> findAll() {
 		return super.doSelectAll();
 	}
 
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
-	 * Loads the given bean, it is supposed to contains the primary key value(s) in its attribute(s)<br>
-	 * If found, the given instance is populated with the values retrieved from the database<br>
+	 * Loads the given bean, it is supposed to contains the primary key value(s) in
+	 * its attribute(s)<br>
+	 * If found, the given instance is populated with the values retrieved from the
+	 * database<br>
 	 * If not found, the given instance remains unchanged
+	 * 
 	 * @param member
 	 * @return true if found, false if not found
 	 */
-	//@Override
-	public boolean load( MemberRecord member ) {
-		return super.doSelect(member) ;
+	// @Override
+	public boolean load(MemberRecord member) {
+		return super.doSelect(member);
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
-	 * Inserts the given bean in the database 
+	 * Inserts the given bean in the database
+	 * 
 	 * @param member
 	 */
 	public long insert(MemberRecord member) {
 		super.doInsert(member);
-		return 0L ;
+		return 0L;
 	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public MemberRecord create(MemberRecord member) {
 		insert(member);
-		return member ;
-	}	
+		return member;
+	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public boolean update(MemberRecord member) {
 		int r = super.doUpdate(member);
-		return r > 0 ;
+		return r > 0;
 
-	}	
+	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public MemberRecord save(MemberRecord member) {
-		if ( super.doExists(member) ) {
+		if (super.doExists(member)) {
 			super.doUpdate(member);
-		}
-		else {
+		} else {
 			super.doInsert(member);
 		}
-		return member ;
-	}	
-
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
-	 */
-	@Override
-	public boolean deleteById( Integer id ) {
-		MemberRecord member = newInstanceWithPrimaryKey( id ) ;
-		int r = super.doDelete(member);
-		return r > 0 ;
+		return member;
 	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
-	public boolean delete( MemberRecord member ) {
+	public boolean deleteById(Integer id) {
+		MemberRecord member = newInstanceWithPrimaryKey(id);
 		int r = super.doDelete(member);
-		return r > 0 ;
+		return r > 0;
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
+	 */
+	@Override
+	public boolean delete(MemberRecord member) {
+		int r = super.doDelete(member);
+		return r > 0;
+	}
+
+	// ----------------------------------------------------------------------
 	/**
-	 * Checks the existence of a record in the database using the given primary key value(s)
+	 * Checks the existence of a record in the database using the given primary key
+	 * value(s)
+	 * 
 	 * @param id;
 	 * @return
 	 */
 	// @Override
-	public boolean exists( Integer id ) {
-		MemberRecord member = newInstanceWithPrimaryKey( id ) ;
+	public boolean exists(Integer id) {
+		MemberRecord member = newInstanceWithPrimaryKey(id);
 		return super.doExists(member);
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	/**
-	 * Checks the existence of the given bean in the database 
+	 * Checks the existence of the given bean in the database
+	 * 
 	 * @param member
 	 * @return
 	 */
 	// @Override
-	public boolean exists( MemberRecord member ) {
+	public boolean exists(MemberRecord member) {
 		return super.doExists(member);
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
 	 * Counts all the records present in the database
+	 * 
 	 * @return
 	 */
 	@Override
@@ -255,40 +275,52 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 		return super.doCountAll();
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlSelect() {
-		return SQL_SELECT ;
+		return SQL_SELECT;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlSelectAll() {
 		return SQL_SELECT_ALL;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlInsert() {
-		return SQL_INSERT ;
+		return SQL_INSERT;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlUpdate() {
-		return SQL_UPDATE ;
+		return SQL_UPDATE;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlDelete() {
-		return SQL_DELETE ;
+		return SQL_DELETE;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlCount() {
-		return SQL_COUNT ;
+		return SQL_COUNT;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlCountAll() {
-		return SQL_COUNT_ALL ;
+		return SQL_COUNT_ALL;
+	}
+
+	@Override
+	protected String getSqlTeamHumor(String day) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
