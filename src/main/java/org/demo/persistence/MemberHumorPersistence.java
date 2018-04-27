@@ -11,30 +11,33 @@ import org.demo.data.record.MemberHumorRecord;
 /**
  * Persistence Interface for MemberHumorRecord.
  */
-public interface MemberHumorPersistence { 
+public interface MemberHumorPersistence {
 
 	/**
 	 * Tries to find an entity using its Id / Primary Key
+	 * 
 	 * @param id
 	 * @return entity
 	 */
-	MemberHumorRecord findById( Integer id  ) ;
+	MemberHumorRecord findById(Integer id);
 
 	/**
 	 * Finds all entities.
+	 * 
 	 * @return all entities
 	 */
 	List<MemberHumorRecord> findAll();
 
 	/**
 	 * Counts all the records present in the database
+	 * 
 	 * @return
 	 */
-	public long countAll() ;
-
+	public long countAll();
 
 	/**
 	 * Saves the given entity in the database (create or update)
+	 * 
 	 * @param entity
 	 * @return entity
 	 */
@@ -42,13 +45,16 @@ public interface MemberHumorPersistence {
 
 	/**
 	 * Updates the given entity in the database
+	 * 
 	 * @param entity
-	 * @return true if the entity has been updated, false if not found and not updated
+	 * @return true if the entity has been updated, false if not found and not
+	 *         updated
 	 */
 	boolean update(MemberHumorRecord entity);
 
 	/**
-	 * Creates the given entity in the database
+	 * Returns true if the given entity exists
+	 * 
 	 * @param entity
 	 * @return
 	 */
@@ -56,30 +62,53 @@ public interface MemberHumorPersistence {
 
 	/**
 	 * Deletes an entity using its Id / Primary Key
+	 * 
 	 * @param id
-	 * @return true if the entity has been deleted, false if not found and not deleted
+	 * @return true if the entity has been deleted, false if not found and not
+	 *         deleted
 	 */
-	boolean deleteById( Integer id );
+	boolean deleteById(Integer id);
 
 	/**
 	 * Deletes an entity using the Id / Primary Key stored in the given object
-	 * @param the entity to be deleted (supposed to have a valid Id/PK )
-	 * @return true if the entity has been deleted, false if not found and not deleted
+	 * 
+	 * @param the
+	 *            entity to be deleted (supposed to have a valid Id/PK )
+	 * @return true if the entity has been deleted, false if not found and not
+	 *         deleted
 	 */
-	boolean delete( MemberHumorRecord entity );
+	boolean delete(MemberHumorRecord entity);
 
 	/**
-	 * Returns true if an entity exists with the given Id / Primary Key 
+	 * Returns true if an entity exists with the given Id / Primary Key
+	 * 
 	 * @param id
 	 * @return
 	 */
-	public boolean exists( Integer id ) ;
+	public boolean exists(Integer id);
 
 	/**
 	 * Returns true if the given entity exists
+	 * 
 	 * @param entity
 	 * @return
 	 */
-	public boolean exists( MemberHumorRecord entity ) ;
+	public boolean exists(MemberHumorRecord entity);
+
+	/**
+	 * Calculate average team humor value for a specific day
+	 * 
+	 * @param string
+	 * @return int representing arithmetical value of team humor level
+	 */
+	public double calculateTeamHumor(String day);
+
+	/**
+	 * Give team humor for a specific day
+	 * 
+	 * @param int
+	 * @return String
+	 */
+	public String giveTextTeamHumor(Long averageTeamHumor);
 
 }
