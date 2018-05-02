@@ -133,7 +133,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\":100, \n\t\"memberId\":100, \n\t\"day\":null, \n\t\"memberHumorLevel\":\"AAAAAAAAAAAAAAAAAAAAAAAAA\"\n}"
+					"raw": "{\n\t\"id\":100, \n\t\"memberId\":100, \n\t\"day\":null, \n\t\"memberHumorLevel\":100\n}"
 				},
 				"description": "CREATE with POST method"
 			},
@@ -173,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\":100, \n\t\"memberId\":100, \n\t\"day\":null, \n\t\"memberHumorLevel\":\"AAAAAAAAAAAAAAAAAAAAAAAAA\"\n}"
+					"raw": "{\n\t\"id\":100, \n\t\"memberId\":100, \n\t\"day\":null, \n\t\"memberHumorLevel\":100\n}"
 				},
 				"description": "UPDATE with PUT method"
 			},
@@ -216,7 +216,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\":100, \n\t\"memberId\":100, \n\t\"day\":null, \n\t\"memberHumorLevel\":\"AAAAAAAAAAAAAAAAAAAAAAAAA\"\n}"
+					"raw": "{\n\t\"id\":100, \n\t\"memberId\":100, \n\t\"day\":null, \n\t\"memberHumorLevel\":100\n}"
 				},
 				"description": "SAVE with PUT method"
 			},

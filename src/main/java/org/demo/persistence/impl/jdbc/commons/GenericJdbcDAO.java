@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -146,19 +145,6 @@ public abstract class GenericJdbcDAO<T> {
 	 * @param id
 	 */
 	protected abstract void setAutoIncrementedKey(T bean, long id);
-
-	/**
-	 * Returns the SQL COUNT REQUEST to be used to count all the beans present in
-	 * the database
-	 * 
-	 * @return
-	 */
-
-	// ==================================================
-	// CODE ADDITION
-	// ==================================================
-
-	protected abstract String getSqlTeamHumor(String day);
 
 	// -----------------------------------------------------------------------------------------
 	private Connection getConnection() throws SQLException {
@@ -415,35 +401,6 @@ public abstract class GenericJdbcDAO<T> {
 		}
 		return result;
 	}
-
-	// =======================================================================
-	// CODE ADDITION
-	// =======================================================================
-	/**
-	 * Counts all the occurrences in the table ( SQL SELECT COUNT(*) )
-	 * 
-	 * @return
-	 */
-	protected ArrayList<String> doCalculateTeamHumor(String day) {
-		ArrayList<String> humorValues = new ArrayList<String>();
-		Connection conn = null;
-		try {
-			conn = getConnection();
-			PreparedStatement ps = conn.prepareStatement(getSqlTeamHumor(day));
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				humorValues.add(rs.getString("MEMBER_HUMOR_LEVEL"));
-			}
-			rs.close();
-			ps.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			closeConnection(conn);
-		}
-		return humorValues;
-	}
-	// =======================================================================
 
 	// -----------------------------------------------------------------------------------------
 	protected void setValue(PreparedStatement ps, int i, String value) throws SQLException {

@@ -316,11 +316,4 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	protected String getSqlCountAll() {
 		return SQL_COUNT_ALL;
 	}
-
-	@Override
-	protected String getSqlTeamHumor(String day) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

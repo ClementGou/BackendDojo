@@ -1,5 +1,9 @@
 package org.demo.enumeration;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public enum Humor {
 
 	LOW("Low", 1),
@@ -17,9 +21,37 @@ public enum Humor {
 		this.humorValue = humorValue;
 	}
 
-	public String toString() {
-		return humorLevel + " " + humorValue;
+	// ----------------------------------------------------------------------
+	// Give list of Humor numerical values
+	// ----------------------------------------------------------------------
 
+	private static final List<Integer> HUMORVALUES;
+
+	static {
+		HUMORVALUES = new ArrayList<>();
+		for (Humor Enum : Humor.values()) {
+			HUMORVALUES.add(Enum.humorValue);
+		}
+	}
+
+	public static List<Integer> getValues() {
+		return Collections.unmodifiableList(HUMORVALUES);
+	}
+
+	// ----------------------------------------------------------------------
+	// Give list of Humor level  texts
+	// ----------------------------------------------------------------------
+	private static final List<String> HUMORTEXTS;
+
+	static {
+		HUMORTEXTS = new ArrayList<>();
+		for (Humor Enum : Humor.values()) {
+			HUMORTEXTS.add(Enum.humorLevel);
+		}
+	}
+
+	public static List<String> getTexts() {
+		return Collections.unmodifiableList(HUMORTEXTS);
 	}
 
 	// ----------------------------------------------------------------------
@@ -40,5 +72,10 @@ public enum Humor {
 
 	public void setHumorValue(int humorValue) {
 		this.humorValue = humorValue;
+	}
+
+	// To string method
+	public String toString() {
+		return humorLevel + " " + humorValue;
 	}
 }
