@@ -7,19 +7,6 @@ package org.demo.web.rest.jaxrs;
 import java.util.LinkedList;
 import java.util.List;
 
-//--- Entities
-import org.demo.data.record.MemberRecord;
-import org.demo.data.record.listitem.MemberListItem;
-
-
-//--- Services 
-import org.demo.persistence.MemberPersistence;
-// import org.demo.business.service.impl.MemberServiceImpl;
-import org.demo.persistence.commons.PersistenceServiceProvider;
-import org.demo.web.rest.commons.AbstractResourceController;
-
-
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -31,6 +18,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+//--- Entities
+import org.demo.data.record.MemberRecord;
+import org.demo.data.record.listitem.MemberListItem;
+//--- Services 
+import org.demo.persistence.MemberPersistence;
+// import org.demo.business.service.impl.MemberServiceImpl;
+import org.demo.persistence.commons.PersistenceServiceProvider;
+import org.demo.web.rest.commons.AbstractResourceController;
 
 /**
  * JAXRS Jersey controller for 'Member' management.
@@ -50,10 +46,11 @@ public class MemberResource extends AbstractResourceController {
 
 	/**
 	 * Get all member entities.
+	 * 
 	 * @return list with all entities found
 	 */
 	@GET
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<MemberRecord> findAll() {
 		logger.info("findAll()...");
 		return memberService.findAll();
@@ -61,66 +58,93 @@ public class MemberResource extends AbstractResourceController {
 
 	/**
 	 * Retrieves a member using the given id.
-	 * @param id id
-	 * @return 200 + body if found, 404 if not found 
+	 * 
+	 * @param id
+	 *            id
+	 * @return 200 + body if found, 404 if not found
 	 */
 	@GET
 	@Path("{id}")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findById(@PathParam("id") Integer id) {
-		logger.info("findById("+id+")...");
+		logger.info("findById(" + id + ")...");
 		MemberRecord record = memberService.findById(id);
-		if ( record != null ) {
+		if (record != null) {
 			return Response.ok(record).build();
-		}
-		else {
+		} else {
+			logger.info("findById(NOT FOUND");
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
 
 	/**
 	 * Creates a new member.
-	 * @param member member
-	 * @return 201 with body if created, 409 conflict if duplicate key 
-	 */	
+	 * 
+	 * @param member
+	 *            member
+	 * @return 201 with body if created, 409 conflict if duplicate key
+	 */
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Response create(MemberRecord member) {
 		logger.info("create()...");
-		if ( memberService.exists(member) ) {
+		if (memberService.exists(member)) {
 			logger.info("create() : already exists -> conflict");
 			return Response.status(Status.CONFLICT).build();
-		}
-		else {
+		} else {
 			logger.info("create() : doesn't exist -> create");
 			MemberRecord record = memberService.create(member);
 			return Response.status(Status.CREATED).entity(record).build();
 		}
 	}
 
-//------------------------------------------------------------
+	/**
+	 * For login process in app, find if a member exists.
+	 * 
+	 * @param firstName,
+	 *            lastName, password from http request
+	 * @return 200 with body if exists, 204 if doesn't exist
+	 */
+	@GET
+	@Path("/login/firstname/{firstname}/lastname/{lastname}/password/{password}")
+	public Response loginCheck(@PathParam("firstname") String firstname, @PathParam("lastname") String lastname,
+			@PathParam("password") String password) {
+		logger.info("loginCheck( )...");
+		if (memberService.findByLogin(firstname, lastname, password)) {
+			logger.info("loginCheck() : member exists -> connection 200");
+			return Response.status(Status.OK).build();
+		} else {
+			logger.info("loginCheck() : member doesn't exist -> no content 204 ");
+			return Response.status(Status.NO_CONTENT).build();
+		}
+	}
+
+	// ------------------------------------------------------------
 	/**
 	 * Updates the member identified by the given id
-	 * @param member member entity
-	 * @param id id 
-	 * @return 200 if found and updated, 404 if not found 
-	 */	
+	 * 
+	 * @param member
+	 *            member entity
+	 * @param id
+	 *            id
+	 * @return 200 if found and updated, 404 if not found
+	 */
 	@PUT
 	@Path("{id}")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
-	// public MemberRecord update(MemberRecord member, @PathParam("id") Integer id) {
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	// public MemberRecord update(MemberRecord member, @PathParam("id") Integer id)
+	// {
 	public Response update(MemberRecord member, @PathParam("id") Integer id) {
 		logger.info("update()...");
 		// force the id (use the id provided by the URL)
-		member.setId( id );
+		member.setId(id);
 		boolean updated = memberService.update(member);
-		if ( updated ) {
+		if (updated) {
 			// Actually updated (found and updated) => 200 OK
 			return Response.status(Status.OK).build();
-		}
-		else {
+		} else {
 			// Not updated with no error => 404 not found
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -128,56 +152,59 @@ public class MemberResource extends AbstractResourceController {
 
 	/**
 	 * Save (create or update) the given member.
-	 * @param member member entity
+	 * 
+	 * @param member
+	 *            member entity
 	 * @return 200 if found and updated, 201 if not found and created
-	 */	
+	 */
 	@PUT
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public Response save(MemberRecord member) {
 		logger.info("save()...");
-		Status status = Status.OK ; // 200 OK
-		if ( ! memberService.exists(member) ) {
-			status = Status.CREATED ; // 201 CREATED
+		Status status = Status.OK; // 200 OK
+		if (!memberService.exists(member)) {
+			status = Status.CREATED; // 201 CREATED
 		}
 		MemberRecord record = memberService.save(member);
 		// Response ( code 200 or 201 )
 		return Response.status(status).entity(record).build();
 	}
 
-
-//------------------------------------------------------------
+	// ------------------------------------------------------------
 	/**
 	 * Delete a member.
-	 * @param id id
+	 * 
+	 * @param id
+	 *            id
 	 */
 	@DELETE
 	@Path("{id}")
-	//@Consumes({MediaType.APPLICATION_JSON})
+	// @Consumes({MediaType.APPLICATION_JSON})
 	// public void delete(@PathParam("id") Integer id) {
 	public Response delete(@PathParam("id") Integer id) {
-		logger.info("delete("+id+")...");
+		logger.info("delete(" + id + ")...");
 		// memberService.deleteById(id);
 		boolean deleted = memberService.deleteById(id);
-		if ( deleted ) {
-			// Actually deleted (found and deleted) => 204 "No Content" because no body in the response 
+		if (deleted) {
+			// Actually deleted (found and deleted) => 204 "No Content" because no body in
+			// the response
 			return Response.status(Status.NO_CONTENT).build();
-		}
-		else {
+		} else {
 			// Not deleted with no error => 404 "Not found"
 			return Response.status(Status.NOT_FOUND).build();
 		}
-}
+	}
 
 	@GET
 	@Path("/members-list-items")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<MemberListItem> listItems() {
 		logger.info("listItems()...");
 		List<MemberRecord> list = memberService.findAll();
 		List<MemberListItem> items = new LinkedList<MemberListItem>();
-		for ( MemberRecord member : list ) {
-			items.add(new MemberListItem( member ) );
+		for (MemberRecord member : list) {
+			items.add(new MemberListItem(member));
 		}
 		return items;
 	}

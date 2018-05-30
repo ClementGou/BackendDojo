@@ -12,13 +12,12 @@ import java.util.List;
 
 import javax.inject.Named;
 
-
-import org.demo.data.record.MemberHumorRecord ;
+import org.demo.data.record.MemberHumorRecord;
 import org.demo.persistence.MemberHumorPersistence;
 import org.demo.persistence.impl.jdbc.commons.GenericJdbcDAO;
 
 /**
- * MemberHumor persistence implementation 
+ * MemberHumor persistence implementation
  * 
  * @author Telosys
  *
@@ -26,28 +25,21 @@ import org.demo.persistence.impl.jdbc.commons.GenericJdbcDAO;
 @Named("MemberHumorPersistence")
 public class MemberHumorPersistenceJdbc extends GenericJdbcDAO<MemberHumorRecord> implements MemberHumorPersistence {
 
-	private final static String SQL_SELECT_ALL = 
-		"select ID, MEMBER_ID, DAY, MEMBER_HUMOR_LEVEL from MEMBER_HUMOR"; 
+	private final static String SQL_SELECT_ALL = "select ID, MEMBER_ID, DAY, MEMBER_HUMOR_LEVEL from MEMBER_HUMOR";
 
-	private final static String SQL_SELECT = 
-		"select ID, MEMBER_ID, DAY, MEMBER_HUMOR_LEVEL from MEMBER_HUMOR where ID = ?";
+	private final static String SQL_SELECT = "select ID, MEMBER_ID, DAY, MEMBER_HUMOR_LEVEL from MEMBER_HUMOR where ID = ?";
 
-	private final static String SQL_INSERT = 
-		"insert into MEMBER_HUMOR ( ID, MEMBER_ID, DAY, MEMBER_HUMOR_LEVEL ) values ( ?, ?, ?, ? )";
+	private final static String SQL_INSERT = "insert into MEMBER_HUMOR ( ID, MEMBER_ID, DAY, MEMBER_HUMOR_LEVEL ) values ( ?, ?, ?, ? )";
 
-	private final static String SQL_UPDATE = 
-		"update MEMBER_HUMOR set MEMBER_ID = ?, DAY = ?, MEMBER_HUMOR_LEVEL = ? where ID = ?";
+	private final static String SQL_UPDATE = "update MEMBER_HUMOR set MEMBER_ID = ?, DAY = ?, MEMBER_HUMOR_LEVEL = ? where ID = ?";
 
-	private final static String SQL_DELETE = 
-		"delete from MEMBER_HUMOR where ID = ?";
+	private final static String SQL_DELETE = "delete from MEMBER_HUMOR where ID = ?";
 
-	private final static String SQL_COUNT_ALL = 
-		"select count(*) from MEMBER_HUMOR";
+	private final static String SQL_COUNT_ALL = "select count(*) from MEMBER_HUMOR";
 
-	private final static String SQL_COUNT = 
-		"select count(*) from MEMBER_HUMOR where ID = ?";
+	private final static String SQL_COUNT = "select count(*) from MEMBER_HUMOR where ID = ?";
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
 	 * DAO constructor
 	 */
@@ -55,201 +47,255 @@ public class MemberHumorPersistenceJdbc extends GenericJdbcDAO<MemberHumorRecord
 		super();
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setAutoIncrementedKey(MemberHumorRecord record, long value) {
 		throw new IllegalStateException("Unexpected call to method 'setAutoIncrementedKey'");
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
-	protected void setValuesForPrimaryKey(PreparedStatement ps, int i, MemberHumorRecord memberHumor) throws SQLException {
-		//--- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
-		setValue(ps, i++, memberHumor.getId() ) ; // "ID" : java.lang.Integer
+	protected void setValuesForPrimaryKey(PreparedStatement ps, int i, MemberHumorRecord memberHumor)
+			throws SQLException {
+		// --- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
+		setValue(ps, i++, memberHumor.getId()); // "ID" : java.lang.Integer
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForInsert(PreparedStatement ps, int i, MemberHumorRecord memberHumor) throws SQLException {
+<<<<<<< Updated upstream
 		//--- Set PRIMARY KEY and DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
 		setValue(ps, i++, memberHumor.getId() ) ; // "ID" : java.lang.Integer
 		setValue(ps, i++, memberHumor.getMemberId() ) ; // "MEMBER_ID" : java.lang.Integer
 		setValue(ps, i++, memberHumor.getDay() ) ; // "DAY" : java.util.Date
 		setValue(ps, i++, memberHumor.getMemberHumorLevel() ) ; // "MEMBER_HUMOR_LEVEL" : java.lang.Integer
+=======
+		// --- Set PRIMARY KEY and DATA from bean to PreparedStatement ( SQL "SET x=?,
+		// y=?, ..." )
+		setValue(ps, i++, memberHumor.getId()); // "ID" : java.lang.Integer
+		setValue(ps, i++, memberHumor.getMemberId()); // "MEMBER_ID" : java.lang.Integer
+		setValue(ps, i++, memberHumor.getDay()); // "DAY" : java.util.Date
+		setValue(ps, i++, memberHumor.getMemberHumorLevel()); // "MEMBER_HUMOR_LEVEL" : java.lang.String
+>>>>>>> Stashed changes
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForUpdate(PreparedStatement ps, int i, MemberHumorRecord memberHumor) throws SQLException {
+<<<<<<< Updated upstream
 		//--- Set DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
 		setValue(ps, i++, memberHumor.getMemberId() ) ; // "MEMBER_ID" : java.lang.Integer
 		setValue(ps, i++, memberHumor.getDay() ) ; // "DAY" : java.util.Date
 		setValue(ps, i++, memberHumor.getMemberHumorLevel() ) ; // "MEMBER_HUMOR_LEVEL" : java.lang.Integer
 		//--- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
 		setValue(ps, i++, memberHumor.getId() ) ; // "ID" : java.lang.Integer
+=======
+		// --- Set DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
+		setValue(ps, i++, memberHumor.getMemberId()); // "MEMBER_ID" : java.lang.Integer
+		setValue(ps, i++, memberHumor.getDay()); // "DAY" : java.util.Date
+		setValue(ps, i++, memberHumor.getMemberHumorLevel()); // "MEMBER_HUMOR_LEVEL" : java.lang.String
+		// --- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
+		setValue(ps, i++, memberHumor.getId()); // "ID" : java.lang.Integer
+>>>>>>> Stashed changes
 	}
 
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
-	 * Creates a new instance of the bean and populates it with the given primary value(s)
+	 * Creates a new instance of the bean and populates it with the given primary
+	 * value(s)
+	 * 
 	 * @param id;
 	 * @return the new instance
 	 */
-	private MemberHumorRecord newInstanceWithPrimaryKey( Integer id ) {
+	private MemberHumorRecord newInstanceWithPrimaryKey(Integer id) {
 		MemberHumorRecord memberHumor = new MemberHumorRecord();
-		memberHumor.setId( id );
-		return memberHumor ;
+		memberHumor.setId(id);
+		return memberHumor;
 	}
 
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected MemberHumorRecord newInstance() {
-		return new MemberHumorRecord() ;
+		return new MemberHumorRecord();
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected MemberHumorRecord populateBean(ResultSet rs, MemberHumorRecord memberHumor) throws SQLException {
 
-		//--- Set data from ResultSet to Bean attributes
+		// --- Set data from ResultSet to Bean attributes
 		memberHumor.setId(rs.getInt("ID")); // java.lang.Integer
-		if ( rs.wasNull() ) { memberHumor.setId(null); }; // not primitive number => keep null value if any
+		if (rs.wasNull()) {
+			memberHumor.setId(null);
+		}
+		; // not primitive number => keep null value if any
 		memberHumor.setMemberId(rs.getInt("MEMBER_ID")); // java.lang.Integer
-		if ( rs.wasNull() ) { memberHumor.setMemberId(null); }; // not primitive number => keep null value if any
+		if (rs.wasNull()) {
+			memberHumor.setMemberId(null);
+		}
+		; // not primitive number => keep null value if any
 		memberHumor.setDay(rs.getDate("DAY")); // java.util.Date
+<<<<<<< Updated upstream
 		memberHumor.setMemberHumorLevel(rs.getInt("MEMBER_HUMOR_LEVEL")); // java.lang.Integer
 		if ( rs.wasNull() ) { memberHumor.setMemberHumorLevel(null); }; // not primitive number => keep null value if any
 		return memberHumor ;
+=======
+		memberHumor.setMemberHumorLevel(rs.getString("MEMBER_HUMOR_LEVEL")); // java.lang.String
+		return memberHumor;
+>>>>>>> Stashed changes
 	}
 
-	//----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
-	public MemberHumorRecord findById( Integer id ) {
-		MemberHumorRecord memberHumor = newInstanceWithPrimaryKey( id ) ;
-		if ( super.doSelect(memberHumor) ) {
-			return memberHumor ;
-		}
-		else {
-			return null ; // Not found
+	public MemberHumorRecord findById(Integer id) {
+		MemberHumorRecord memberHumor = newInstanceWithPrimaryKey(id);
+		if (super.doSelect(memberHumor)) {
+			return memberHumor;
+		} else {
+			return null; // Not found
 		}
 	}
-	//----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public List<MemberHumorRecord> findAll() {
 		return super.doSelectAll();
 	}
 
-	//----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
-	 * Loads the given bean, it is supposed to contains the primary key value(s) in its attribute(s)<br>
-	 * If found, the given instance is populated with the values retrieved from the database<br>
+	 * Loads the given bean, it is supposed to contains the primary key value(s) in
+	 * its attribute(s)<br>
+	 * If found, the given instance is populated with the values retrieved from the
+	 * database<br>
 	 * If not found, the given instance remains unchanged
+	 * 
 	 * @param memberHumor
 	 * @return true if found, false if not found
 	 */
-	//@Override
-	public boolean load( MemberHumorRecord memberHumor ) {
-		return super.doSelect(memberHumor) ;
+	// @Override
+	public boolean load(MemberHumorRecord memberHumor) {
+		return super.doSelect(memberHumor);
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
-	 * Inserts the given bean in the database 
+	 * Inserts the given bean in the database
+	 * 
 	 * @param memberHumor
 	 */
 	public long insert(MemberHumorRecord memberHumor) {
 		super.doInsert(memberHumor);
-		return 0L ;
+		return 0L;
 	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public MemberHumorRecord create(MemberHumorRecord memberHumor) {
 		insert(memberHumor);
-		return memberHumor ;
-	}	
+		return memberHumor;
+	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public boolean update(MemberHumorRecord memberHumor) {
 		int r = super.doUpdate(memberHumor);
-		return r > 0 ;
+		return r > 0;
 
-	}	
+	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
 	public MemberHumorRecord save(MemberHumorRecord memberHumor) {
-		if ( super.doExists(memberHumor) ) {
+		if (super.doExists(memberHumor)) {
 			super.doUpdate(memberHumor);
-		}
-		else {
+		} else {
 			super.doInsert(memberHumor);
 		}
-		return memberHumor ;
-	}	
-
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
-	 */
-	@Override
-	public boolean deleteById( Integer id ) {
-		MemberHumorRecord memberHumor = newInstanceWithPrimaryKey( id ) ;
-		int r = super.doDelete(memberHumor);
-		return r > 0 ;
+		return memberHumor;
 	}
 
-    //----------------------------------------------------------------------
-	/* (non-Javadoc)
-	 * @see interface 
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
 	 */
 	@Override
-	public boolean delete( MemberHumorRecord memberHumor ) {
+	public boolean deleteById(Integer id) {
+		MemberHumorRecord memberHumor = newInstanceWithPrimaryKey(id);
 		int r = super.doDelete(memberHumor);
-		return r > 0 ;
+		return r > 0;
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see interface
+	 */
+	@Override
+	public boolean delete(MemberHumorRecord memberHumor) {
+		int r = super.doDelete(memberHumor);
+		return r > 0;
+	}
+
+	// ----------------------------------------------------------------------
 	/**
-	 * Checks the existence of a record in the database using the given primary key value(s)
+	 * Checks the existence of a record in the database using the given primary key
+	 * value(s)
+	 * 
 	 * @param id;
 	 * @return
 	 */
 	// @Override
-	public boolean exists( Integer id ) {
-		MemberHumorRecord memberHumor = newInstanceWithPrimaryKey( id ) ;
+	public boolean exists(Integer id) {
+		MemberHumorRecord memberHumor = newInstanceWithPrimaryKey(id);
 		return super.doExists(memberHumor);
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	/**
-	 * Checks the existence of the given bean in the database 
+	 * Checks the existence of the given bean in the database
+	 * 
 	 * @param memberHumor
 	 * @return
 	 */
 	// @Override
-	public boolean exists( MemberHumorRecord memberHumor ) {
+	public boolean exists(MemberHumorRecord memberHumor) {
 		return super.doExists(memberHumor);
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	/**
 	 * Counts all the records present in the database
+	 * 
 	 * @return
 	 */
 	@Override
@@ -257,40 +303,57 @@ public class MemberHumorPersistenceJdbc extends GenericJdbcDAO<MemberHumorRecord
 		return super.doCountAll();
 	}
 
-    //----------------------------------------------------------------------
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlSelect() {
-		return SQL_SELECT ;
+		return SQL_SELECT;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlSelectAll() {
 		return SQL_SELECT_ALL;
 	}
-    //----------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------
 	@Override
 	protected String getSqlInsert() {
-		return SQL_INSERT ;
-	}
-    //----------------------------------------------------------------------
-	@Override
-	protected String getSqlUpdate() {
-		return SQL_UPDATE ;
-	}
-    //----------------------------------------------------------------------
-	@Override
-	protected String getSqlDelete() {
-		return SQL_DELETE ;
-	}
-    //----------------------------------------------------------------------
-	@Override
-	protected String getSqlCount() {
-		return SQL_COUNT ;
-	}
-    //----------------------------------------------------------------------
-	@Override
-	protected String getSqlCountAll() {
-		return SQL_COUNT_ALL ;
+		return SQL_INSERT;
 	}
 
+	// ----------------------------------------------------------------------
+	@Override
+	protected String getSqlUpdate() {
+		return SQL_UPDATE;
+	}
+
+	// ----------------------------------------------------------------------
+	@Override
+	protected String getSqlDelete() {
+		return SQL_DELETE;
+	}
+
+	// ----------------------------------------------------------------------
+	@Override
+	protected String getSqlCount() {
+		return SQL_COUNT;
+	}
+
+	// ----------------------------------------------------------------------
+	@Override
+	protected String getSqlCountAll() {
+		return SQL_COUNT_ALL;
+	}
+
+	@Override
+	protected String getSqlLogin() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setValuesForLoginCheck(PreparedStatement ps, int i, MemberHumorRecord bean) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
 }

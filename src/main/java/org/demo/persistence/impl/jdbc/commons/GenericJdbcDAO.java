@@ -94,6 +94,16 @@ public abstract class GenericJdbcDAO<T> {
 	 */
 	protected abstract String getSqlCountAll();
 
+<<<<<<< Updated upstream
+=======
+	/**
+	 * Returns the SQL LOGIN to be used to check if a given bean exists in database
+	 * 
+	 * @return
+	 */
+	protected abstract String getSqlLogin();
+
+>>>>>>> Stashed changes
 	/**
 	 * Set the primary key value(s) in the given PreparedStatement
 	 * 
@@ -146,6 +156,20 @@ public abstract class GenericJdbcDAO<T> {
 	 */
 	protected abstract void setAutoIncrementedKey(T bean, long id);
 
+<<<<<<< Updated upstream
+=======
+	// ----------------------------------------------------------------------
+	/**
+	 * Set the member values in the given PreparedStatement before SQL LOGIN
+	 * 
+	 * @param ps
+	 * @param i
+	 * @param member
+	 * @throws SQLException
+	 */
+	protected abstract void setValuesForLoginCheck(PreparedStatement ps, int i, T bean) throws SQLException;
+
+>>>>>>> Stashed changes
 	// -----------------------------------------------------------------------------------------
 	private Connection getConnection() throws SQLException {
 		return dataSource.getConnection();
@@ -400,6 +424,44 @@ public abstract class GenericJdbcDAO<T> {
 			closeConnection(conn);
 		}
 		return result;
+<<<<<<< Updated upstream
+=======
+	}
+
+	// -----------------------------------------------------------------------------------------
+	/**
+	 * Checks if the given bean exists in the database (parameters: firstname,
+	 * lastname, password) SQL LOGIN
+	 * 
+	 * @return
+	 */
+	protected boolean doCheckLogin(T bean) {
+
+		boolean result = false;
+		Connection conn = null;
+
+		try {
+			conn = getConnection();
+			PreparedStatement ps = conn.prepareStatement(getSqlLogin());
+			// --- Set the PRIMARY KEY ( SQL "WHERE ..." )
+			setValuesForLoginCheck(ps, INITIAL_POSITION, bean);
+			// --- Execute SQL SELECT
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				populateBean(rs, bean);
+				result = true;
+			} else {
+				result = false;
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			closeConnection(conn);
+		}
+		return result;
+>>>>>>> Stashed changes
 	}
 
 	// -----------------------------------------------------------------------------------------
@@ -499,5 +561,4 @@ public abstract class GenericJdbcDAO<T> {
 	protected void setValue(PreparedStatement ps, int i, byte[] value) throws SQLException {
 		ps.setBytes(i, value);
 	}
-
 }

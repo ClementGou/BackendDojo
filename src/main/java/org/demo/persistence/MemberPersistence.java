@@ -11,30 +11,33 @@ import org.demo.data.record.MemberRecord;
 /**
  * Persistence Interface for MemberRecord.
  */
-public interface MemberPersistence { 
+public interface MemberPersistence {
 
 	/**
 	 * Tries to find an entity using its Id / Primary Key
+	 * 
 	 * @param id
 	 * @return entity
 	 */
-	MemberRecord findById( Integer id  ) ;
+	MemberRecord findById(Integer id);
 
 	/**
 	 * Finds all entities.
+	 * 
 	 * @return all entities
 	 */
 	List<MemberRecord> findAll();
 
 	/**
 	 * Counts all the records present in the database
+	 * 
 	 * @return
 	 */
-	public long countAll() ;
-
+	public long countAll();
 
 	/**
 	 * Saves the given entity in the database (create or update)
+	 * 
 	 * @param entity
 	 * @return entity
 	 */
@@ -42,13 +45,16 @@ public interface MemberPersistence {
 
 	/**
 	 * Updates the given entity in the database
+	 * 
 	 * @param entity
-	 * @return true if the entity has been updated, false if not found and not updated
+	 * @return true if the entity has been updated, false if not found and not
+	 *         updated
 	 */
 	boolean update(MemberRecord entity);
 
 	/**
 	 * Creates the given entity in the database
+	 * 
 	 * @param entity
 	 * @return
 	 */
@@ -56,30 +62,57 @@ public interface MemberPersistence {
 
 	/**
 	 * Deletes an entity using its Id / Primary Key
+	 * 
 	 * @param id
-	 * @return true if the entity has been deleted, false if not found and not deleted
+	 * @return true if the entity has been deleted, false if not found and not
+	 *         deleted
 	 */
-	boolean deleteById( Integer id );
+	boolean deleteById(Integer id);
 
 	/**
 	 * Deletes an entity using the Id / Primary Key stored in the given object
-	 * @param the entity to be deleted (supposed to have a valid Id/PK )
-	 * @return true if the entity has been deleted, false if not found and not deleted
+	 * 
+	 * @param the
+	 *            entity to be deleted (supposed to have a valid Id/PK )
+	 * @return true if the entity has been deleted, false if not found and not
+	 *         deleted
 	 */
-	boolean delete( MemberRecord entity );
+	boolean delete(MemberRecord entity);
 
 	/**
-	 * Returns true if an entity exists with the given Id / Primary Key 
+	 * Returns true if an entity exists with the given Id / Primary Key
+	 * 
 	 * @param id
 	 * @return
 	 */
-	public boolean exists( Integer id ) ;
+	public boolean exists(Integer id);
 
 	/**
 	 * Returns true if the given entity exists
+	 * 
 	 * @param entity
 	 * @return
 	 */
-	public boolean exists( MemberRecord entity ) ;
+	public boolean exists(MemberRecord entity);
+
+	// /**
+	// * Returns true if the given entity exists with the given parameters (used for
+	// * loginCheck)
+	// *
+	// * @param entity
+	// * @return
+	// */
+	// public boolean existsLogin(String firstName, String lastName, String
+	// password);
+
+	/**
+	 * Tries to find an entity using given parameters (firstname, lastname and
+	 * password)
+	 * 
+	 * @param firstname,
+	 *            lastname, password
+	 * @return
+	 */
+	public boolean findByLogin(String firstname, String lastname, String password);
 
 }
