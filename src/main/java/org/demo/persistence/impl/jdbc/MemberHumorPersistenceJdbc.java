@@ -64,40 +64,26 @@ public class MemberHumorPersistenceJdbc extends GenericJdbcDAO<MemberHumorRecord
 	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForInsert(PreparedStatement ps, int i, MemberHumorRecord memberHumor) throws SQLException {
-<<<<<<< Updated upstream
-		//--- Set PRIMARY KEY and DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
-		setValue(ps, i++, memberHumor.getId() ) ; // "ID" : java.lang.Integer
-		setValue(ps, i++, memberHumor.getMemberId() ) ; // "MEMBER_ID" : java.lang.Integer
-		setValue(ps, i++, memberHumor.getDay() ) ; // "DAY" : java.util.Date
-		setValue(ps, i++, memberHumor.getMemberHumorLevel() ) ; // "MEMBER_HUMOR_LEVEL" : java.lang.Integer
-=======
+
 		// --- Set PRIMARY KEY and DATA from bean to PreparedStatement ( SQL "SET x=?,
 		// y=?, ..." )
 		setValue(ps, i++, memberHumor.getId()); // "ID" : java.lang.Integer
 		setValue(ps, i++, memberHumor.getMemberId()); // "MEMBER_ID" : java.lang.Integer
 		setValue(ps, i++, memberHumor.getDay()); // "DAY" : java.util.Date
 		setValue(ps, i++, memberHumor.getMemberHumorLevel()); // "MEMBER_HUMOR_LEVEL" : java.lang.String
->>>>>>> Stashed changes
+
 	}
 
 	// ----------------------------------------------------------------------
 	@Override
 	protected void setValuesForUpdate(PreparedStatement ps, int i, MemberHumorRecord memberHumor) throws SQLException {
-<<<<<<< Updated upstream
-		//--- Set DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
-		setValue(ps, i++, memberHumor.getMemberId() ) ; // "MEMBER_ID" : java.lang.Integer
-		setValue(ps, i++, memberHumor.getDay() ) ; // "DAY" : java.util.Date
-		setValue(ps, i++, memberHumor.getMemberHumorLevel() ) ; // "MEMBER_HUMOR_LEVEL" : java.lang.Integer
-		//--- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
-		setValue(ps, i++, memberHumor.getId() ) ; // "ID" : java.lang.Integer
-=======
+
 		// --- Set DATA from bean to PreparedStatement ( SQL "SET x=?, y=?, ..." )
 		setValue(ps, i++, memberHumor.getMemberId()); // "MEMBER_ID" : java.lang.Integer
 		setValue(ps, i++, memberHumor.getDay()); // "DAY" : java.util.Date
 		setValue(ps, i++, memberHumor.getMemberHumorLevel()); // "MEMBER_HUMOR_LEVEL" : java.lang.String
 		// --- Set PRIMARY KEY from bean to PreparedStatement ( SQL "WHERE key=?, ..." )
 		setValue(ps, i++, memberHumor.getId()); // "ID" : java.lang.Integer
->>>>>>> Stashed changes
 	}
 
 	// ----------------------------------------------------------------------
@@ -136,14 +122,17 @@ public class MemberHumorPersistenceJdbc extends GenericJdbcDAO<MemberHumorRecord
 		}
 		; // not primitive number => keep null value if any
 		memberHumor.setDay(rs.getDate("DAY")); // java.util.Date
-<<<<<<< Updated upstream
 		memberHumor.setMemberHumorLevel(rs.getInt("MEMBER_HUMOR_LEVEL")); // java.lang.Integer
-		if ( rs.wasNull() ) { memberHumor.setMemberHumorLevel(null); }; // not primitive number => keep null value if any
-		return memberHumor ;
-=======
-		memberHumor.setMemberHumorLevel(rs.getString("MEMBER_HUMOR_LEVEL")); // java.lang.String
+		if (rs.wasNull()) {
+			memberHumor.setMemberHumorLevel(null);
+		}
+		; // not primitive number => keep null value if any
 		return memberHumor;
->>>>>>> Stashed changes
+		// =======
+		// memberHumor.setMemberHumorLevel(rs.getString("MEMBER_HUMOR_LEVEL")); //
+		// java.lang.String
+		// return memberHumor;
+		// >>>>>>> Stashed changes
 	}
 
 	// ----------------------------------------------------------------------

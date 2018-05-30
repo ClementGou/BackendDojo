@@ -94,8 +94,6 @@ public abstract class GenericJdbcDAO<T> {
 	 */
 	protected abstract String getSqlCountAll();
 
-<<<<<<< Updated upstream
-=======
 	/**
 	 * Returns the SQL LOGIN to be used to check if a given bean exists in database
 	 * 
@@ -103,7 +101,6 @@ public abstract class GenericJdbcDAO<T> {
 	 */
 	protected abstract String getSqlLogin();
 
->>>>>>> Stashed changes
 	/**
 	 * Set the primary key value(s) in the given PreparedStatement
 	 * 
@@ -156,8 +153,6 @@ public abstract class GenericJdbcDAO<T> {
 	 */
 	protected abstract void setAutoIncrementedKey(T bean, long id);
 
-<<<<<<< Updated upstream
-=======
 	// ----------------------------------------------------------------------
 	/**
 	 * Set the member values in the given PreparedStatement before SQL LOGIN
@@ -169,7 +164,6 @@ public abstract class GenericJdbcDAO<T> {
 	 */
 	protected abstract void setValuesForLoginCheck(PreparedStatement ps, int i, T bean) throws SQLException;
 
->>>>>>> Stashed changes
 	// -----------------------------------------------------------------------------------------
 	private Connection getConnection() throws SQLException {
 		return dataSource.getConnection();
@@ -424,8 +418,7 @@ public abstract class GenericJdbcDAO<T> {
 			closeConnection(conn);
 		}
 		return result;
-<<<<<<< Updated upstream
-=======
+
 	}
 
 	// -----------------------------------------------------------------------------------------
@@ -461,7 +454,6 @@ public abstract class GenericJdbcDAO<T> {
 			closeConnection(conn);
 		}
 		return result;
->>>>>>> Stashed changes
 	}
 
 	// -----------------------------------------------------------------------------------------

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Java bean for entity "MEMBER_HUMOR" <br>
@@ -19,121 +18,7 @@ import javax.validation.constraints.Size;
  * @author Telosys Tools Generator
  *
  */
-<<<<<<< Updated upstream
-public class MemberHumorRecord implements Serializable
-{
-    private static final long serialVersionUID = 1L;
 
-    @NotNull
-    private Integer id ; // Integer // Id or Primary Key
-
-    @NotNull
-    private Integer memberId ;  // Integer 
-    @NotNull
-    private Date day ;  // Date 
-    @NotNull
-    private Integer memberHumorLevel ;  // Integer 
-
-    /**
-     * Default constructor
-     */
-    public MemberHumorRecord() {
-        super();
-    }
-    
-    //----------------------------------------------------------------------
-    // GETTER(S) & SETTER(S) FOR ID OR PRIMARY KEY 
-    //----------------------------------------------------------------------
-    /**
-     * Set the "id" field value
-     * This field is mapped on the database column "ID" ( type "INTEGER", NotNull : true ) 
-     * @param id
-     */
-	public void setId( Integer id ) {
-        this.id = id ;
-    }
-    /**
-     * Get the "id" field value
-     * This field is mapped on the database column "ID" ( type "INTEGER", NotNull : true ) 
-     * @return the field value
-     */
-	public Integer getId() {
-        return this.id;
-    }
-
-    //----------------------------------------------------------------------
-    // GETTER(S) & SETTER(S) FOR OTHER DATA FIELDS 
-    //----------------------------------------------------------------------
-
-    /**
-     * Set the "memberId" field value
-     * This field is mapped on the database column "MEMBER_ID" ( type "INTEGER", NotNull : true ) 
-     * @param memberId
-     */
-    public void setMemberId( Integer memberId ) {
-        this.memberId = memberId;
-    }
-    /**
-     * Get the "memberId" field value
-     * This field is mapped on the database column "MEMBER_ID" ( type "INTEGER", NotNull : true ) 
-     * @return the field value
-     */
-    public Integer getMemberId() {
-        return this.memberId;
-    }
-
-    /**
-     * Set the "day" field value
-     * This field is mapped on the database column "DAY" ( type "DATE", NotNull : true ) 
-     * @param day
-     */
-    public void setDay( Date day ) {
-        this.day = day;
-    }
-    /**
-     * Get the "day" field value
-     * This field is mapped on the database column "DAY" ( type "DATE", NotNull : true ) 
-     * @return the field value
-     */
-    public Date getDay() {
-        return this.day;
-    }
-
-    /**
-     * Set the "memberHumorLevel" field value
-     * This field is mapped on the database column "MEMBER_HUMOR_LEVEL" ( type "INTEGER", NotNull : false ) 
-     * @param memberHumorLevel
-     */
-    public void setMemberHumorLevel( Integer memberHumorLevel ) {
-        this.memberHumorLevel = memberHumorLevel;
-    }
-    /**
-     * Get the "memberHumorLevel" field value
-     * This field is mapped on the database column "MEMBER_HUMOR_LEVEL" ( type "INTEGER", NotNull : false ) 
-     * @return the field value
-     */
-    public Integer getMemberHumorLevel() {
-        return this.memberHumorLevel;
-    }
-
-    //----------------------------------------------------------------------
-    // toString METHOD
-    //----------------------------------------------------------------------
-    @Override
-    public String toString() { 
-        StringBuffer sb = new StringBuffer(); 
-        sb.append(id);
-        sb.append("|");
-        sb.append(memberId);
-        sb.append("|");
-        sb.append(day);
-        sb.append("|");
-        sb.append(memberHumorLevel);
-        return sb.toString(); 
-    } 
-
-
-=======
 public class MemberHumorRecord implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -144,8 +29,7 @@ public class MemberHumorRecord implements Serializable {
 	@NotNull
 	private Date day; // Date
 	@NotNull
-	@Size(min = 1, max = 25)
-	private String memberHumorLevel; // String
+	private Integer memberHumorLevel; // Integer
 
 	/**
 	 * Default constructor
@@ -223,21 +107,21 @@ public class MemberHumorRecord implements Serializable {
 
 	/**
 	 * Set the "memberHumorLevel" field value This field is mapped on the database
-	 * column "MEMBER_HUMOR_LEVEL" ( type "VARCHAR", NotNull : true )
+	 * column "MEMBER_HUMOR_LEVEL" ( type "INTEGER", NotNull : false )
 	 * 
 	 * @param memberHumorLevel
 	 */
-	public void setMemberHumorLevel(String memberHumorLevel) {
+	public void setMemberHumorLevel(Integer memberHumorLevel) {
 		this.memberHumorLevel = memberHumorLevel;
 	}
 
 	/**
 	 * Get the "memberHumorLevel" field value This field is mapped on the database
-	 * column "MEMBER_HUMOR_LEVEL" ( type "VARCHAR", NotNull : true )
+	 * column "MEMBER_HUMOR_LEVEL" ( type "INTEGER", NotNull : false )
 	 * 
 	 * @return the field value
 	 */
-	public String getMemberHumorLevel() {
+	public Integer getMemberHumorLevel() {
 		return this.memberHumorLevel;
 	}
 
@@ -256,6 +140,5 @@ public class MemberHumorRecord implements Serializable {
 		sb.append(memberHumorLevel);
 		return sb.toString();
 	}
->>>>>>> Stashed changes
 
 }

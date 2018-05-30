@@ -51,7 +51,7 @@ import ${ROOT_PKG}.persistence.${entity.name}Persistence;
 public class ${entity.name}PersistenceGenericTest {
 
 ##----------------------------------------------------------------------------------------
-##  ========== TEST CASE FOR STANDARD KEY ( NOT AUTO-INCREMENTED ) ========== 
+##  === TEST CASE FOR STANDARD KEY ( NOT AUTO-INCREMENTED ) === 
 ##----------------------------------------------------------------------------------------
 #if ( $entity.hasAutoIncrementedKey() == false )
 	/**
@@ -194,7 +194,7 @@ public class ${entity.name}PersistenceGenericTest {
 	}
 #end
 ##----------------------------------------------------------------------------------------
-##  ========== TEST CASE FOR AUTO-INCREMENTED KEY ========== 
+##  === TEST CASE FOR AUTO-INCREMENTED KEY === 
 ##----------------------------------------------------------------------------------------
 #if ( $entity.hasAutoIncrementedKey() )
 	/**

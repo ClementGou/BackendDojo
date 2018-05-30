@@ -26,20 +26,6 @@ import org.demo.persistence.impl.jdbc.commons.GenericJdbcDAO;
 public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implements MemberPersistence {
 
 	private final static String SQL_SELECT_ALL = "select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER";
-<<<<<<< Updated upstream
-
-	private final static String SQL_SELECT = "select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER where ID = ?";
-
-	private final static String SQL_INSERT = "insert into MEMBER ( ID, FIRSTNAME, LASTNAME, PASSWORD ) values ( ?, ?, ?, ? )";
-
-	private final static String SQL_UPDATE = "update MEMBER set FIRSTNAME = ?, LASTNAME = ?, PASSWORD = ? where ID = ?";
-
-	private final static String SQL_DELETE = "delete from MEMBER where ID = ?";
-
-	private final static String SQL_COUNT_ALL = "select count(*) from MEMBER";
-
-	private final static String SQL_COUNT = "select count(*) from MEMBER where ID = ?";
-=======
 
 	private final static String SQL_SELECT = "select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER where ID = ?";
 
@@ -54,7 +40,6 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	private final static String SQL_COUNT = "select count(*) from MEMBER where ID = ?";
 
 	private static final String SQL_LOGIN = "select ID, FIRSTNAME, LASTNAME, PASSWORD from MEMBER where FIRSTNAME = ? and LASTNAME = ? and PASSWORD = ?";
->>>>>>> Stashed changes
 
 	// ----------------------------------------------------------------------
 	/**
@@ -101,9 +86,8 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 
 	// ----------------------------------------------------------------------
 	/**
-<<<<<<< Updated upstream
-=======
-	 * Set the member values in the given PreparedStatement before SQL LOGIN
+	 * 
+	 * ======= Set the member values in the given PreparedStatement before SQL LOGIN
 	 * 
 	 * @param ps
 	 * @param i
@@ -121,7 +105,6 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 
 	// ----------------------------------------------------------------------
 	/**
->>>>>>> Stashed changes
 	 * Creates a new instance of the bean and populates it with the given primary
 	 * value(s)
 	 * 
@@ -129,10 +112,7 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	 * @return the new instance
 	 */
 	private MemberRecord newInstanceWithPrimaryKey(Integer id) {
-<<<<<<< Updated upstream
-		MemberRecord member = new MemberRecord();
-		member.setId(id);
-=======
+
 		MemberRecord member = new MemberRecord();
 		member.setId(id);
 		return member;
@@ -152,7 +132,6 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 		member.setFirstname(firstname);
 		member.setLastname(lastname);
 		member.setPassword(password);
->>>>>>> Stashed changes
 		return member;
 	}
 
@@ -199,9 +178,8 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	 * (non-Javadoc)
 	 * 
 	 * @see interface
-<<<<<<< Updated upstream
-=======
-	 */
+	 * 
+	 **/
 	@Override
 	public boolean findByLogin(String firstname, String lastname, String password) {
 		MemberRecord member = newInstanceWithParameters(firstname, lastname, password);
@@ -213,7 +191,6 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	 * (non-Javadoc)
 	 * 
 	 * @see interface
->>>>>>> Stashed changes
 	 */
 	@Override
 	public List<MemberRecord> findAll() {
@@ -391,12 +368,10 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	protected String getSqlCountAll() {
 		return SQL_COUNT_ALL;
 	}
-<<<<<<< Updated upstream
-=======
 
 	@Override
 	protected String getSqlLogin() {
 		return SQL_LOGIN;
 	}
->>>>>>> Stashed changes
+
 }

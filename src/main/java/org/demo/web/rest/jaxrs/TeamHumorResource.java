@@ -53,7 +53,7 @@ public class TeamHumorResource extends AbstractResourceController {
 		if (teamHumor != null) {
 			return Response.ok(teamHumor).build();
 		} else {
-			return Response.status(Status.NOT_FOUND).build();
+			return Response.status(Status.BAD_REQUEST).build();
 		}
 	}
 
