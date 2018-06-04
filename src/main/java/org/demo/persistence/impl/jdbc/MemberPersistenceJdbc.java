@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.apache.commons.codec.binary.Base64;
 import org.demo.data.record.MemberRecord;
 import org.demo.persistence.MemberPersistence;
 import org.demo.persistence.impl.jdbc.commons.GenericJdbcDAO;
@@ -220,6 +221,9 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	 * @param member
 	 */
 	public long insert(MemberRecord member) {
+		// Encode password in Base64. TODO: remove this ligne when user registering
+		// (client side) will handle Base64 encoding
+		member.setPassword(Base64.encodeBase64String(member.getPassword().getBytes()));
 		super.doInsert(member);
 		return 0L;
 	}

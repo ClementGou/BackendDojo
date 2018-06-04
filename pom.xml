@@ -129,6 +129,14 @@
 		    <artifactId>derby</artifactId>
 		    <version>10.11.1.1</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.7</version>
+		</dependency>
+		
 
 	</dependencies>
 

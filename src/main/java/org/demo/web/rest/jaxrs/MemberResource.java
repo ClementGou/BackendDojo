@@ -4,6 +4,7 @@
  */
 package org.demo.web.rest.jaxrs;
 
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class MemberResource extends AbstractResourceController {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response create(MemberRecord member) {
+	public Response create(MemberRecord member) throws UnsupportedEncodingException {
 		logger.info("create()...");
 		if (memberService.exists(member)) {
 			logger.info("create() : already exists -> conflict");
@@ -95,6 +96,10 @@ public class MemberResource extends AbstractResourceController {
 		} else {
 			logger.info("create() : doesn't exist -> create");
 			MemberRecord record = memberService.create(member);
+			// logger.info("member unencoded password: " + (new
+			// String(Base64.decodeBase64(member.getPassword()),
+			// "UTF-8")));
+			// logger.info("member encoded passsword: " + member.getPassword());
 			return Response.status(Status.CREATED).entity(record).build();
 		}
 	}

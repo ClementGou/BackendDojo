@@ -9,21 +9,21 @@ import java.util.logging.Logger;
 
 /**
  * Abstract REST resource controller providing a logger <br>
- *  
+ * 
  * @author Telosys
  *
  */
 public abstract class AbstractResourceController {
 
-	protected final Logger logger ;
-	
+	protected final Logger logger;
+
 	/**
 	 * Constructor
 	 */
 	public AbstractResourceController() {
 		super();
-		this.logger = Logger.getLogger(this.getClass().getCanonicalName()); 
+		this.logger = Logger.getLogger(this.getClass().getCanonicalName());
 
-		this.logger.setLevel(LoggerLevel.LEVEL);
+		logger.setLevel(LoggerLevel.LEVEL);
 	}
 }
