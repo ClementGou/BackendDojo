@@ -125,19 +125,6 @@ public class MemberResource extends AbstractResourceController {
 		}
 	}
 
-	/**
-	 * Count member entities.
-	 * 
-	 * @return number of entities
-	 */
-	@GET
-	@Path("/countAllMember")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public long countAll() {
-		logger.info("findAll()...");
-		return memberService.countAll();
-	}
-
 	// ------------------------------------------------------------
 	/**
 	 * Updates the member identified by the given id
