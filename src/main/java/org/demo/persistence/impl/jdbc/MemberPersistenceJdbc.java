@@ -182,9 +182,14 @@ public class MemberPersistenceJdbc extends GenericJdbcDAO<MemberRecord> implemen
 	 * 
 	 **/
 	@Override
-	public boolean findByLogin(String firstname, String lastname, String password) {
+	public MemberRecord findByLogin(String firstname, String lastname, String password) {
 		MemberRecord member = newInstanceWithParameters(firstname, lastname, password);
-		return super.doCheckLogin(member);
+		if (super.doCheckLogin(member)) {
+			member.setPassword(null);
+			return member;
+		} else {
+			return null;
+		}
 	}
 
 	// ----------------------------------------------------------------------

@@ -95,16 +95,6 @@ public interface MemberPersistence {
 	 */
 	public boolean exists(MemberRecord entity);
 
-	// /**
-	// * Returns true if the given entity exists with the given parameters (used for
-	// * loginCheck)
-	// *
-	// * @param entity
-	// * @return
-	// */
-	// public boolean existsLogin(String firstName, String lastName, String
-	// password);
-
 	/**
 	 * Tries to find an entity using given parameters (firstname, lastname and
 	 * password)
@@ -113,6 +103,6 @@ public interface MemberPersistence {
 	 *            lastname, password
 	 * @return
 	 */
-	public boolean findByLogin(String firstname, String lastname, String password);
+	public MemberRecord findByLogin(String firstname, String lastname, String password);
 
 }

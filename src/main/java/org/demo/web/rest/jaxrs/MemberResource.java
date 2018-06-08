@@ -105,7 +105,8 @@ public class MemberResource extends AbstractResourceController {
 	}
 
 	/**
-	 * For login process in app, find if a member exists.
+	 * For login process in app, find if a member exists and return member
+	 * parameters excecpt password.
 	 * 
 	 * @param firstName,
 	 *            lastName, password from http request
@@ -116,9 +117,11 @@ public class MemberResource extends AbstractResourceController {
 	public Response loginCheck(@PathParam("firstname") String firstname, @PathParam("lastname") String lastname,
 			@PathParam("password") String password) {
 		logger.info("loginCheck( )...");
-		if (memberService.findByLogin(firstname, lastname, password)) {
+		MemberRecord record = memberService.findByLogin(firstname, lastname, password);
+		if (record != null) {
 			logger.info("loginCheck() : member exists -> connection 200");
-			return Response.status(Status.OK).build();
+			return Response.ok(record).build();
+
 		} else {
 			logger.info("loginCheck() : member doesn't exist -> no content 204 ");
 			return Response.status(Status.NO_CONTENT).build();
