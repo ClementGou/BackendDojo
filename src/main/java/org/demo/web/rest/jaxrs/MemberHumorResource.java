@@ -59,7 +59,7 @@ public class MemberHumorResource extends AbstractResourceController {
 	}
 
 	/**
-	 * Retrieves a memberHumor using the given id.
+	 * Retrieves a memberHumor using the given id (id + date determined by user).
 	 * 
 	 * @param memberId
 	 *            memberId
@@ -72,6 +72,28 @@ public class MemberHumorResource extends AbstractResourceController {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findById(@PathParam("memberId") Integer memberId, @PathParam("day") Date day) {
 		logger.info("findById(" + memberId + day + ")...");
+		MemberHumorRecord record = memberHumorService.findById(memberId, day);
+		if (record != null) {
+			return Response.ok(record).build();
+		} else {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+
+	/**
+	 * Retrieves a memberHumor using the given (id + actual date).
+	 * 
+	 * @param memberId
+	 *            memberId
+	 *
+	 * @return 200 + body if found, 404 if not found
+	 */
+	@GET
+	@Path("{memberId}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response findById(@PathParam("memberId") Integer memberId) {
+		Date day = new Date();
+		logger.info("findById(" + memberId + ", today: " + day + ")...");
 		MemberHumorRecord record = memberHumorService.findById(memberId, day);
 		if (record != null) {
 			return Response.ok(record).build();
