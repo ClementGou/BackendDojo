@@ -112,8 +112,33 @@ public class MemberHumorResource extends AbstractResourceController {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response create(MemberHumorRecord memberHumor) {
+	public Response createToday(MemberHumorRecord memberHumor) {
 		logger.info("create()...");
+		if (memberHumorService.exists(memberHumor)) {
+			logger.info("create() : already exists -> conflict");
+			return Response.status(Status.CONFLICT).build();
+		} else {
+			logger.info("create() : doesn't exist -> create");
+			MemberHumorRecord record = memberHumorService.create(memberHumor);
+			return Response.status(Status.CREATED).entity(record).build();
+		}
+	}
+
+	/**
+	 * Creates a new memberHumor for today.
+	 * 
+	 * @param memberHumor
+	 *            memberHumor
+	 * @return 201 with body if created, 409 conflict if duplicate key
+	 */
+	@POST
+	@Path("/today")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response create(MemberHumorRecord memberHumor) {
+		Date day = new Date();
+		logger.info("create()...");
+		memberHumor.setDay(day);
 		if (memberHumorService.exists(memberHumor)) {
 			logger.info("create() : already exists -> conflict");
 			return Response.status(Status.CONFLICT).build();
